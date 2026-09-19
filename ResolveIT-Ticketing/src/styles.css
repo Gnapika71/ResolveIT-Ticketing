@@ -1,0 +1,152 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * ResolveIT design system — Frosted Glass Console.
+ * Light, airy glass surfaces floating over a soft indigo/cyan gradient.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-cyan-glow: var(--cyan-glow);
+  --color-open: var(--open);
+  --color-progress: var(--progress);
+  --color-resolved: var(--resolved);
+  --color-closed: var(--closed);
+  --color-critical: var(--critical);
+  --color-high: var(--high);
+  --color-medium: var(--medium);
+  --color-low: var(--low);
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(0.972 0.008 250);
+  --foreground: oklch(0.208 0.042 265.755);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.208 0.042 265.755);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.208 0.042 265.755);
+  --primary: oklch(0.585 0.197 276.9);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+  --secondary: oklch(0.955 0.02 270);
+  --secondary-foreground: oklch(0.35 0.06 268);
+  --muted: oklch(0.955 0.012 260);
+  --muted-foreground: oklch(0.554 0.046 257.417);
+  --accent: oklch(0.93 0.03 230);
+  --accent-foreground: oklch(0.35 0.08 230);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(1 0 0 / 70%);
+  --input: oklch(0.929 0.013 255.508);
+  --ring: oklch(0.585 0.197 276.9);
+  --brand: oklch(0.585 0.197 276.9);
+  --brand-foreground: oklch(0.985 0.005 270);
+  --cyan-glow: oklch(0.819 0.141 210);
+  --open: oklch(0.63 0.2 15);
+  --progress: oklch(0.72 0.16 75);
+  --resolved: oklch(0.62 0.15 160);
+  --closed: oklch(0.6 0.02 260);
+  --critical: oklch(0.63 0.2 15);
+  --high: oklch(0.72 0.16 60);
+  --medium: oklch(0.585 0.197 276.9);
+  --low: oklch(0.72 0.12 210);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+  }
+}
+
+/* Frosted glass surfaces */
+@utility glass-card {
+  background: oklch(1 0 0 / 0.55);
+  backdrop-filter: blur(24px);
+  border: 1px solid oklch(1 0 0 / 0.7);
+  border-radius: var(--radius-3xl);
+  box-shadow: 0 20px 45px -20px color-mix(in oklab, var(--color-brand) 28%, transparent);
+}
+
+@utility glass-pill {
+  background: oklch(1 0 0 / 0.5);
+  backdrop-filter: blur(24px);
+  border: 1px solid oklch(1 0 0 / 0.7);
+  box-shadow: 0 4px 16px -6px oklch(0.6 0.05 270 / 0.25);
+}
+
+@utility glass-row {
+  background: oklch(1 0 0 / 0.5);
+  border: 1px solid oklch(1 0 0 / 0.6);
+  transition: background 150ms ease;
+  &:hover {
+    background: oklch(1 0 0 / 0.72);
+  }
+}
+
+/* Ambient floating blobs */
+@keyframes float-a {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(40px, -30px) scale(1.08);
+  }
+}
+
+@keyframes float-b {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-30px, 40px) scale(1.12);
+  }
+}
+
+@utility animate-float-a {
+  animation: float-a 14s ease-in-out infinite;
+}
+
+@utility animate-float-b {
+  animation: float-b 18s ease-in-out infinite;
+}
